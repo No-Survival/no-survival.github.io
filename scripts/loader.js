@@ -8,7 +8,7 @@ var loader = function(){
   }
 };
 loader.bind(list);
-document.getElementsByTagName('body')[0].addEventListener('load',loader);
+document.addEventListener('load',loader);
 }([
 'base'
 ]))
