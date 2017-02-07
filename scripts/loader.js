@@ -3,11 +3,11 @@ var loader = function(){
   var header=document.getElementsByTagName('head')[0];
   for(var count=0;count<list2Load.length;count++) {
     var sc=document.createElement('script');
-    sc.setAttribute('src','/scripts/'+this[count]+'.js');
+    sc.setAttribute('src','/scripts/'+list2Load[count]+'.js');
     sc.setAttribute('async','async');
     header.appendChild(sc);
     var st=document.createElement('link');
-    st.setAttribute('href','/styles/'+this[count]+'.css');
+    st.setAttribute('href','/styles/'+list2Load[count]+'.css');
     st.setAttribute('rel','stylesheet');
     header.appendChild(st);
   }
