@@ -9,6 +9,6 @@ function increase() {
  }
 }
 window.setInterval(function() {
-  gold+=0.1*(1+house);
+  gold+=0.1*house+0.0001;
   document.getElementById("gold").firstChild.innerHTML=gold;
 },100);
