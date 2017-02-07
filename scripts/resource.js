@@ -4,6 +4,11 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
   this.onTick = onTick?onTick:function(){};
   this.onTick.bind(this);
+  this.update = function() {
+    this.onTick();
+    this.label.lastChild.innerHTML=this.value;
+  };
+  this.update.bind(this);
   this.value = startingValue?startingValue:0;
   this.increase = function(amount) {
     this.value += amount?amount:1;
