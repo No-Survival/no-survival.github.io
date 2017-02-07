@@ -10,6 +10,9 @@ var loader = function(){
 loader.bind(list);
 document.onload = loader;
 window.onload = loader;
+if(document.readyState === 'complete') {
+ window.setTimeout(loader,10); 
+}
 }([
 'base'
 ]))
