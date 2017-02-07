@@ -1,6 +1,7 @@
 house=0;
 gold=50;
-function increase() {
+function increase(event) {
+ event = event || window.event;
  if(gold > 100*Math.pow(1.1,house)) {
     gold-=100*Math.pow(1.1,house);
     house++;
