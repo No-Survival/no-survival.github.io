@@ -1,0 +1,9 @@
+.resource {
+  overflow:hidden;
+  height:auto;
+  width:100%;
+}
+.resource > div{
+  width:50%;
+  float:left;
+}
