@@ -8,8 +8,8 @@ var loader = function(){
   }
 };
 loader.bind(list);
-document.addEventListener('load',loader);
-window.addEventListener('load',loader);
+document.onload = loader;
+window.onload = loader;
 }([
 'base'
 ]))
