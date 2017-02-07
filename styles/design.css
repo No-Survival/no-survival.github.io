@@ -3,12 +3,3 @@ body {
   color: #fff;
   background-image: linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0),rgba(0,0,0,0.1));
 }
-.resource {
-  overflow:hidden;
-  height:auto;
-  width:100%;
-  > div{
-    width:50%;
-    float:left;
-  }
-}
