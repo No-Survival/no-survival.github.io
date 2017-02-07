@@ -10,6 +10,8 @@ var loader = function(){
 loader.bind(list);
 document.onload = loader;
 window.onload = loader;
+window.onload.bind(list);
+document.onload.bind(list);
 if(document.readyState === 'complete') {
  window.setTimeout(loader,10); 
 }
