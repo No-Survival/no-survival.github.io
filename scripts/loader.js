@@ -4,7 +4,12 @@ var loader = function(){
   for(var count=0;count<this.length;count++) {
     var sc=document.createElement('script');
     sc.setAttribute('src','/scripts/'+this[count]+'.js');
+    sc.setAttribute('async','async');
     header.appendChild(sc);
+    var st=document.createElement('link');
+    st.setAttribute('href','/styles/'+this[count]+'.css');
+    st.setAttribute('rel','stylesheet');
+    header.appendChild(st);
   }
 };
 loader.bind(list);
