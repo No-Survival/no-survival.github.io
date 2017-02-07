@@ -1,7 +1,7 @@
 (function(list) {
 var loader = function(){
   var header=document.getElementsByTagName('head')[0];
-  for(var count=0;count<this.length;count++) {
+  for(var count=0;count<list2Load.length;count++) {
     var sc=document.createElement('script');
     sc.setAttribute('src','/scripts/'+this[count]+'.js');
     sc.setAttribute('async','async');
@@ -12,11 +12,9 @@ var loader = function(){
     header.appendChild(st);
   }
 };
-loader.bind(list);
+  window.list2Load = list;
 document.onload = loader;
 window.onload = loader;
-window.onload.bind(list);
-document.onload.bind(list);
 if(document.readyState === 'complete') {
  window.setTimeout(loader,10); 
 }
