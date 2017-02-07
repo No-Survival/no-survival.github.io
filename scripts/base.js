@@ -1,3 +1,5 @@
+house=0;
+gold=50;
 function increase() {
  if(gold > 100*Math.pow(1.1,house-1)) {
     gold-=100*Math.pow(1.1,house-1);
