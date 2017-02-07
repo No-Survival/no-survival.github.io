@@ -1,9 +1,10 @@
 house=0;
 gold=50;
 function increase() {
- if(gold > 100*Math.pow(1.1,house-1)) {
-    gold-=100*Math.pow(1.1,house-1);
+ if(gold > 100*Math.pow(1.1,house)) {
+    gold-=100*Math.pow(1.1,house);
     house++;
+    event.target.innerHTML =100*Math.pow(1.1,house);
     document.getElementById("gold").firstChild.innerHTML=gold;
     document.getElementById("house").firstChild.innerHTML=house;
  }
