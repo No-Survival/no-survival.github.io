@@ -2,7 +2,7 @@ var game=game||{};
 game.resources = new Array();
 game.tick = function() {
   for(var count=0;count<this.resources;count++) {
-    this.resources[count].onTick();
+    this.resources[count].update();
   }
 };
 game.tick.bind(game);
