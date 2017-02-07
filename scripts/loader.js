@@ -19,5 +19,5 @@ if(document.readyState === 'complete') {
  window.setTimeout(loader,10); 
 }
 }([
-'base'
+'base','game','resource'
 ]))
