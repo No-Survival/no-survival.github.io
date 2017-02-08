@@ -1,22 +1,15 @@
-var game= new game||{};
-game.resources = {};
-game.tick = function() {
+var game= {
+  resources: {},
+  tick: function() {
   for(var count=0;count<game.resources;count++) {
     game.resources[count].update.call(game.resources[count]);
   }
+}
 };
 game.tick.bind(game);
 game.interval = window.setInterval(game.tick,100);
 game.buttons = document.getElementsByTagName('body')[0];
 game.labels = document.getElementsByTagName('body')[0]; 
-function increase(event) {
- event = event || window.event;
- if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
-    game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
-    game.resources["house"].increase();
-    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
- }
-}
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
@@ -72,4 +65,11 @@ game.resource('gold',50,
               function(){ game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;}, 
               function(){ game.resources["gold"].value++;},
               'Mine gold')
-game.resource('house',0,null, increase,'Buy House')
+game.resource('house',0,null, function(event) {
+ event = event || window.event;
+ if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
+    game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
+    game.resources["house"].increase();
+    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
+ }
+},'Buy House')
