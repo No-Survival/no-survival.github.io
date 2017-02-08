@@ -7,6 +7,8 @@ game.tick = function() {
 };
 game.tick.bind(game);
 game.interval = window.setInterval(game.tick,100);
+game.buttons = document.getElementsByTagName('body')[0];
+game.labels = document.getElementsByTagName('body')[0];
 house=0;
 gold=50;
 function increase(event) {
@@ -69,6 +71,9 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.lastChild.innerHTML=this.name;
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.format(this.value);
+  game.labels.appendChild(this.label);
+  game.buttons.appendChild(this.button);
+  game.resources[this.name] = this;
 }
-game.resources["gold"]= game.resource('gold',50,tick, null,'Mine gold')
-game.resources["house"] = game.resource('house',0,null, increased,'Buy House')
+game.resource('gold',50,tick, null,'Mine gold')
+game.resource('house',0,null, increased,'Buy House')
