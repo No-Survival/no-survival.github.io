@@ -62,7 +62,7 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   game.resources[this.name] = this;
 }
 game.resources.gold = new game.resource('gold',50,
-              function(){ game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;}, 
+              function(){ game.resources["gold"].value+=0.1*game.resources.house.value+0.01*game.resources.human.value+0.0001;}, 
               function(){ game.resources["gold"].value++;},
               'Mine gold')
 game.resources.house = new game.resource('house',0,null, function(event) {
@@ -73,3 +73,4 @@ game.resources.house = new game.resource('house',0,null, function(event) {
     event.target.innerHTML = "Buy House: " + game.resources.house.format(100*Math.pow(1.1,game.resources.house.value));
  }
 },'Buy House')
+game.resources.human = new game.resource('human',1,function(){game.resources.human+=Math.round(Math.random(0,game.resources.house));}, null,null)
