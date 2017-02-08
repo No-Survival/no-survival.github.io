@@ -13,16 +13,19 @@ house=0;
 gold=50;
 function increase(event) {
  event = event || window.event;
- if(gold > 100*Math.pow(1.1,house)) {
-    gold-=100*Math.pow(1.1,house);
-    house++;
-    event.target.innerHTML =100*Math.pow(1.1,house);
-    document.getElementById("gold").firstChild.innerHTML=gold;
-    document.getElementById("house").firstChild.innerHTML=house;
+ if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
+    game.resources["gold"].value-=100*Math.pow(1.1,game.resources["house"].value);
+    game.resources["house"].value++;
+    event.target.innerHTML =100*Math.pow(1.1,game.resources["house"].value);
+    document.getElementById("gold").firstChild.innerHTML=game.resources["gold"].value;
+    document.getElementById("house").firstChild.innerHTML=game.resources["house"].value;
  }
 }
 function tick() {
-  this.value+=0.1*game.resources["house"].value+0.0001;
+  game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;
+}
+function add(){
+  game.resources["gold"].value++;
 }
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
@@ -75,5 +78,5 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   game.buttons.appendChild(this.button);
   game.resources[this.name] = this;
 }
-game.resource('gold',50,tick, null,'Mine gold')
+game.resource('gold',50,tick, add,'Mine gold')
 game.resource('house',0,null, increased,'Buy House')
