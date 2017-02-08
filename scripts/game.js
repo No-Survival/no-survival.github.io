@@ -1,8 +1,8 @@
-var game=game||{};
+var game= new game||{};
 game.resources = {};
 game.tick = function() {
   for(var count=0;count<game.resources;count++) {
-    game.resources[count].update();
+    game.resources[count].update.call(game.resources[count]);
   }
 };
 game.tick.bind(game);
