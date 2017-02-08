@@ -68,7 +68,11 @@ game.resources.gold = new game.resource('gold',50,
               function(){ game.resources["gold"].value++;},
               'Mine gold')
 game.resources.house = new game.resource('house',0,function(){
-game.resources.house.derease(Math.round(Math.random())*0.001);
+  try{
+game.resources.house.decrease(Math.round(Math.random())*0.001);
+  }catch(e){
+  //no issue here
+  }
 }, function(event) {
  event = event || window.event;
  if(game.resources.gold.value > 100*Math.pow(1.1,game.resources.house.value)) {
