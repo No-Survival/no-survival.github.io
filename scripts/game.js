@@ -17,12 +17,6 @@ function increase(event) {
     event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
  }
 }
-function tick() {
-  game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;
-}
-function add(){
-  game.resources["gold"].value++;
-}
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
