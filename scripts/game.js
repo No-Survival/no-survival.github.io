@@ -23,15 +23,33 @@ window.setInterval(function() {
   gold+=0.1*house+0.0001;
   document.getElementById("gold").firstChild.innerHTML=gold;
 },100);
-var game=game?game:{};
+
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
   this.onTick = onTick?onTick:function(){};
   this.onTick.bind(this);
+  this.format=function(value) {
+    if(value>1000000000000000) {
+      return this.format(value/1000000000000000)+"qi";
+    }
+    if(value>1000000000000) {
+      return this.format(value/1000000000000)+"qa";
+    }
+    if(value>1000000000) {
+      return this.format(value/1000000000)+"b";
+    }
+    if(value>1000000) {
+      return this.format(value/1000000)+"m";
+    }
+    if(value>1000) {
+      return this.format(value/1000)+"k";
+    }
+    return Math.floor(value)+"."+Math.floor(value*10)%10;
+  };
   this.update = function() {
     this.onTick();
-    this.label.lastChild.innerHTML=this.value;
+    this.label.lastChild.innerHTML=this.format(this.value);
   };
   this.update.bind(this);
   this.value = startingValue?startingValue:0;
@@ -52,5 +70,5 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.name;
   this.label.appendChild(document.createElement('div'));
-  this.label.lastChild.innerHTML=this.value;
+  this.label.lastChild.innerHTML=this.format(this.value);
 }
