@@ -1,8 +1,8 @@
 var game= {
   resources: {},
   tick: function() {
-  for(var count=0;count<game.resources;count++) {
-    game.resources[count].update.call(game.resources[count]);
+  for(var count=0;count<this.resources.length;count++) {
+    this[count].update();
   }
 }
 };
