@@ -75,4 +75,4 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   game.resources[this.name] = this;
 }
 game.resource('gold',50,tick, add,'Mine gold')
-game.resource('house',0,null, increased,'Buy House')
+game.resource('house',0,null, increase,'Buy House')
