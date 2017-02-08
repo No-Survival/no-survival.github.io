@@ -40,7 +40,7 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.update.bind(this);
   this.value = startingValue?startingValue:0;
   this.increase = function(amount) {
-    this.value += amount?amount:1;
+    this.value += !Number(amount).isNaN()?amount:1;
   }
   this.decrease = function(amount) {
     if(amount>this.value) {
@@ -49,10 +49,10 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
     this.value -= amount;
   }
   if(onClick){
-  this.button = document.createElement('button');
-  this.button.innerHTML = label?label:name+"-action";
-  this.button.onclick = onClick;
-  game.buttons.appendChild(this.button);
+    this.button = document.createElement('button');
+    this.button.innerHTML = label?label:name+"-action";
+    this.button.onclick = onClick;
+    game.buttons.appendChild(this.button);
   }
   this.label = document.createElement('div');
   this.label.setAttribute('class','resource');
@@ -82,5 +82,5 @@ game.resources.house.decrease(Math.round(Math.random())*0.001);
  }
 },'Buy House');
 game.resources.human = new game.resource('human',1,function(){
-  game.resources.human+=Math.round(Math.random(0,game.resources.house));
+  game.resources.human.increase(Math.round(Math.random(0,game.resources.house)));
 });
