@@ -70,6 +70,6 @@ game.resources.house = new game.resource('house',0,null, function(event) {
  if(game.resources.gold.value > 100*Math.pow(1.1,game.resources.house.value)) {
     game.resources.gold.decrease(100*Math.pow(1.1,game.resources.house.value));
     game.resources.house.increase();
-    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources.house.value);
+    event.target.innerHTML = "Buy House: " + game.resources.house.format(100*Math.pow(1.1,game.resources.house.value));
  }
 },'Buy House')
