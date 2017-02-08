@@ -16,7 +16,7 @@ function increase(event) {
  if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
     game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
     game.resources["house"].increase();
-    event.target.innerHTML =100*Math.pow(1.1,game.resources["house"].value);
+    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
  }
 }
 function tick() {
