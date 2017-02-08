@@ -1,5 +1,5 @@
 var game=game||{};
-game.resources = new Array();
+game.resources = {};
 game.tick = function() {
   for(var count=0;count<this.resources;count++) {
     this.resources[count].update();
@@ -20,10 +20,8 @@ function increase(event) {
  }
 }
 window.setInterval(function() {
-  gold+=0.1*house+0.0001;
-  document.getElementById("gold").firstChild.innerHTML=gold;
+  this.value+=0.1*game.resources["house"].value+0.0001;
 },100);
-
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
