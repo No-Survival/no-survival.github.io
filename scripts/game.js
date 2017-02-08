@@ -1,5 +1,5 @@
 var game=game||{};
-game.resources = new Array();
+game.resources = {};
 game.tick = function() {
   for(var count=0;count<this.resources;count++) {
     this.resources[count].update();
@@ -7,23 +7,16 @@ game.tick = function() {
 };
 game.tick.bind(game);
 game.interval = window.setInterval(game.tick,100);
-house=0;
-gold=50;
+game.buttons = document.getElementsByTagName('body')[0];
+game.labels = document.getElementsByTagName('body')[0]; 
 function increase(event) {
  event = event || window.event;
- if(gold > 100*Math.pow(1.1,house)) {
-    gold-=100*Math.pow(1.1,house);
-    house++;
-    event.target.innerHTML =100*Math.pow(1.1,house);
-    document.getElementById("gold").firstChild.innerHTML=gold;
-    document.getElementById("house").firstChild.innerHTML=house;
+ if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
+    game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
+    game.resources["house"].increase();
+    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
  }
 }
-window.setInterval(function() {
-  gold+=0.1*house+0.0001;
-  document.getElementById("gold").firstChild.innerHTML=gold;
-},100);
-
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
@@ -71,4 +64,12 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.lastChild.innerHTML=this.name;
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.format(this.value);
+  game.labels.appendChild(this.label);
+  game.buttons.appendChild(this.button);
+  game.resources[this.name] = this;
 }
+game.resource('gold',50,
+              function(){ game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;}, 
+              function(){ game.resources["gold"].value++;},
+              'Mine gold')
+game.resource('house',0,null, increase,'Buy House')
