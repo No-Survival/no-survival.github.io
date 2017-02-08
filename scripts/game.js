@@ -7,6 +7,8 @@ game.tick = function() {
 };
 game.tick.bind(game);
 game.interval = window.setInterval(game.tick,100);
+game.buttons = document.getElementsByTagName('body')[0];
+game.labels = document.getElementsByTagName('body')[0]; 
 function increase(event) {
  event = event || window.event;
  if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
