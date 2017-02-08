@@ -14,8 +14,8 @@ gold=50;
 function increase(event) {
  event = event || window.event;
  if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
-    game.resources["gold"].value-=100*Math.pow(1.1,game.resources["house"].value);
-    game.resources["house"].value++;
+    game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
+    game.resources["house"].increase();
     event.target.innerHTML =100*Math.pow(1.1,game.resources["house"].value);
     document.getElementById("gold").firstChild.innerHTML=game.resources["gold"].value;
     document.getElementById("house").firstChild.innerHTML=game.resources["house"].value;
