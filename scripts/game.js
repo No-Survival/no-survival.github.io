@@ -1,8 +1,8 @@
 var game=game||{};
 game.resources = {};
 game.tick = function() {
-  for(var count=0;count<this.resources;count++) {
-    this.resources[count].update();
+  for(var count=0;count<game.resources;count++) {
+    game.resources[count].update();
   }
 };
 game.tick.bind(game);
