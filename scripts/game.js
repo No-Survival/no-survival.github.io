@@ -70,3 +70,5 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.format(this.value);
 }
+game.resources.push('gold',50,tick, null,'Mine gold')
+game.resources.push('house',0,null, increased,'Buy House')
