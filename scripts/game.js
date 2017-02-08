@@ -19,9 +19,9 @@ function increase(event) {
     document.getElementById("house").firstChild.innerHTML=house;
  }
 }
-window.setInterval(function() {
+function tick() {
   this.value+=0.1*game.resources["house"].value+0.0001;
-},100);
+}
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
