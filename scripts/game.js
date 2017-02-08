@@ -48,9 +48,12 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
     }
     this.value -= amount;
   }
+  if(onClick){
   this.button = document.createElement('button');
   this.button.innerHTML = label?label:name+"-action";
-  this.button.onclick = onClick?onClick:function(){};
+  this.button.onclick = onClick;
+  game.buttons.appendChild(this.button);
+  }
   this.label = document.createElement('div');
   this.label.setAttribute('class','resource');
   this.label.appendChild(document.createElement('div'));
@@ -58,7 +61,6 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.format(this.value);
   game.labels.appendChild(this.label);
-  game.buttons.appendChild(this.button);
   game.resources[this.name] = this;
 }
 game.resources.gold = new game.resource('gold',50,
