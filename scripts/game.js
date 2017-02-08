@@ -2,7 +2,7 @@ var game= {
   resources: {},
   tick: function() {
   for(var res in game.resources) {
-    game.resources[res].update.call(game.resources[res]);
+    game.resources[res].update();
   }
 }
 };
@@ -61,15 +61,15 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   game.buttons.appendChild(this.button);
   game.resources[this.name] = this;
 }
-game.resource('gold',50,
+game.resources.gold = new game.resource('gold',50,
               function(){ game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;}, 
               function(){ game.resources["gold"].value++;},
               'Mine gold')
-game.resource('house',0,null, function(event) {
+game.resources.house = new game.resource('house',0,null, function(event) {
  event = event || window.event;
- if(game.resources["gold"].value > 100*Math.pow(1.1,game.resources["house"].value)) {
-    game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
-    game.resources["house"].increase();
-    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources["house"].value);
+ if(game.resources.gold.value > 100*Math.pow(1.1,game.resources.house.value)) {
+    game.resources.gold.decrease(100*Math.pow(1.1,game.resources.house.value));
+    game.resources.house.increase();
+    event.target.innerHTML = "Buy House: " + 100*Math.pow(1.1,game.resources.house.value);
  }
 },'Buy House')
