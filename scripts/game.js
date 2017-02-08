@@ -8,8 +8,8 @@ var game= {
 };
 game.tick.bind(game);
 game.interval = window.setInterval(game.tick,100);
-game.buttons = document.getElementsByTagName('body')[0];
-game.labels = document.getElementsByTagName('body')[0]; 
+game.buttons = document.getElementById('buttons');
+game.labels = document.getElementById('stats'); 
 
 game.resource = function(name,startingValue,onTick,onClick,label) {
   this.name = name;
