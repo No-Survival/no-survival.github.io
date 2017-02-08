@@ -7,3 +7,11 @@
   width:50%;
   float:left;
 }
+#stats {
+  float:left;
+  width:33%;
+}
+#buttons {
+  float:left;
+  width:66%;
+}
