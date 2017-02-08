@@ -17,8 +17,6 @@ function increase(event) {
     game.resources["gold"].decrease(100*Math.pow(1.1,game.resources["house"].value));
     game.resources["house"].increase();
     event.target.innerHTML =100*Math.pow(1.1,game.resources["house"].value);
-    document.getElementById("gold").firstChild.innerHTML=game.resources["gold"].value;
-    document.getElementById("house").firstChild.innerHTML=game.resources["house"].value;
  }
 }
 function tick() {
