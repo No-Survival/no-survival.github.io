@@ -70,5 +70,5 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.label.appendChild(document.createElement('div'));
   this.label.lastChild.innerHTML=this.format(this.value);
 }
-game.resources["gold"]= ('gold',50,tick, null,'Mine gold')
-game.resources["house"] = ('house',0,null, increased,'Buy House')
+game.resources["gold"]= game.resource('gold',50,tick, null,'Mine gold')
+game.resources["house"] = game.resource('house',0,null, increased,'Buy House')
