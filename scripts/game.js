@@ -40,7 +40,7 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   this.update.bind(this);
   this.value = startingValue?startingValue:0;
   this.increase = function(amount) {
-    this.value += !Number(amount).isNaN()?amount:1;
+    this.value += !Number.isNaN(amount)?amount:1;
   }
   this.decrease = function(amount) {
     if(amount>this.value) {
