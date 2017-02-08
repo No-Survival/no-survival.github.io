@@ -74,5 +74,8 @@ game.resource = function(name,startingValue,onTick,onClick,label) {
   game.buttons.appendChild(this.button);
   game.resources[this.name] = this;
 }
-game.resource('gold',50,tick, add,'Mine gold')
+game.resource('gold',50,
+              function(){ game.resources["gold"].value+=0.1*game.resources["house"].value+0.0001;}, 
+              function(){ game.resources["gold"].value++;},
+              'Mine gold')
 game.resource('house',0,null, increase,'Buy House')
