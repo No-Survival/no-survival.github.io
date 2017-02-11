@@ -82,5 +82,5 @@ game.resources.house.decrease(Math.round(Math.random())*0.001);
  }
 },'Buy House');
 game.resources.human = new game.resource('human',1,function(){
-  game.resources.human.increase(Math.round(Math.random(0,game.resources.house.value*game.resources.human*value*game.resources.human*value)));
+  game.resources.human.increase(Math.round(Math.random(0,game.resources.house.value*game.resources.human.value*game.resources.human.value)));
 });
