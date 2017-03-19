@@ -63,35 +63,27 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     game.labels.appendChild( this.label );
     game.resources[this.name] = this;
 }
+
+game.resources.human = new game.resource( 'human', 1, function () {
+    if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value &&
+            game.resources['human'].value > 1 ) {
+        game.resources.human.decrease( 0.01 );
+    } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
+        game.resources.human.increase( 0.01 );
+    }
+} );
 game.resources.gold = new game.resource( 'gold', 50,
               function () { game.resources["gold"].value += 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001; },
               function () { game.resources["gold"].value++; },
-              'Mine gold' )
-game.resources.house = new game.resource( 'house', 0, function () {
-    try {
-        game.resources.house.decrease( Math.round( Math.random() ) * 0.001 );
-    } catch ( e ) {
-        //no issue here
-    }
-}, function ( event ) {
+              'Mine gold' );
+game.resources.supplies = new game.resource( 'supplies', 25, function () {
+    if ( game.resources["supplies"].value > 0 ) { game.resources.supplies.decrease( 0.01 * game.resources['human'].value ); }
+},
+    function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' );
+game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.house.value ) ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.house.value ) );
-        game.resources.house.increase();
-        event.target.innerHTML = "Buy House: " + game.resources.house.format( 100 * Math.pow( 1.1, game.resources.house.value ) );
+        game.resources.house.increase( 1 );
     }
 }, 'Buy House' );
-game.resources.human = new game.resource( 'human', 1, function () {
-    game.resources.human.increase( Math.round(
-      Math.random() * ( 10000 + game.resources.house.value * game.resources.human.value * game.resources.human.value ) >= 10000 ? 1 : 0
-    ) );
-} );
-game.resources.supplies = new game.resource( 'supplies', 25, function () {
-    if ( game.resources['human'].value > game.resources["supplies"].value ) {
-        game.resources.human.decrease( 1 );
-    } else if ( game.resources["supplies"].value > game.resources['human'].value && game.resources['human'].value < game.resources['house'].value * 10 ) {
-        game.resources.human.increase( 1 );
-    }
-    game.resources["supplies"].value -= game.resources["human"].value;
-},
-    function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' )
