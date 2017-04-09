@@ -33,9 +33,13 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         }
         return Math.floor( value ) + "." + Math.floor( value * 10 ) % 10;
     };
+
     this.update = function () {
         this.onTick();
         this.label.lastChild.innerHTML = this.format( this.value );
+        this.width = this.value % Math.floor( this.value ) * 100;
+        console.log( this.width );
+        this.bar.style.width = this.width + '%';
     };
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
@@ -59,8 +63,17 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.label.appendChild( document.createElement( 'div' ) );
     this.label.lastChild.innerHTML = this.name;
     this.label.appendChild( document.createElement( 'div' ) );
-    this.label.lastChild.innerHTML = this.format( this.value );
+    this.label.lastChild.innerHTML = this.format( Math.floor( this.value ) );
     game.labels.appendChild( this.label );
+
+    this.width = 0;
+    this.bprogress = document.createElement( 'div' );
+    this.bprogress.setAttribute( 'class', 'bprogress' );
+    game.labels.appendChild( this.bprogress );
+    this.bar = document.createElement( 'div' );
+    this.bar.setAttribute( 'class', 'bar' );
+    this.bprogress.appendChild( this.bar );
+
     game.resources[this.name] = this;
 }
 
@@ -72,14 +85,17 @@ game.resources.human = new game.resource( 'human', 1, function () {
         game.resources.human.increase( 0.01 );
     }
 } );
+
 game.resources.gold = new game.resource( 'gold', 50,
               function () { game.resources["gold"].value += 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001; },
               function () { game.resources["gold"].value++; },
               'Mine gold' );
+
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
     if ( game.resources["supplies"].value > 0 ) { game.resources.supplies.decrease( 0.01 * game.resources['human'].value ); }
 },
     function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' );
+
 game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.house.value ) ) {

@@ -9,9 +9,15 @@
 }
 #stats {
   float:left;
-  width:33%;
+  width:15%;
 }
 #buttons {
   float:left;
   width:66%;
+}
+.bprogress{
+  height: 2px;
+}
+.bar{
+  height: 2px;
 }
