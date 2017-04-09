@@ -38,7 +38,6 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         this.onTick();
         this.label.lastChild.innerHTML = this.format( this.value );
         this.width = this.value % Math.floor( this.value ) * 100;
-        console.log( this.width );
         this.bar.style.width = this.width + '%';
     };
     this.update.bind( this );
