@@ -75,7 +75,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
 }
 game.resources.gold = new game.resource( 'gold', 50,
               function () {
-                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001 - game.resources.farm.value*0.01;
+                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001 - game.resources.farm.value * 0.01 - game.resources.minecart.value * 0.01;
                   game.resources["gold"].value += tmp;
                   return tmp;
               },
