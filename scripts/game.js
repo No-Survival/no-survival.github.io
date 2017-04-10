@@ -79,7 +79,7 @@ game.resources.gold = new game.resource( 'gold', 50,
                   game.resources["gold"].value += tmp;
                   return tmp;
               },
-              function () { game.resources.gold.increase( 1 + game.resources.farm.value); },
+              function () { game.resources.gold.increase( 1 + game.resources.minecart.value); },
               'Mine gold' );
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
