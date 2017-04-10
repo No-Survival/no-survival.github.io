@@ -95,12 +95,9 @@ game.resources.gold = new game.resource( 'gold', 50,
               'Mine gold' );
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
-    if ( game.resources["supplies"].value > 0 ) {
-        var tmp = game.resources.farm * 0.1 - 0.01 * game.resources['human'].value
-        game.resources.supplies.increase( tmp )
-        return tmp;
-    }
-    return 0;
+    var tmp = game.resources.farm.value * 0.1 - 0.01 * game.resources.human.value
+    game.resources.supplies.increase( tmp )
+    return tmp;
 },
     function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather Supplies' );
 
