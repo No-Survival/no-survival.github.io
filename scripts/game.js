@@ -116,11 +116,11 @@ game.resources.minecart = new game.resource( 'minecart', 0, null, function ( eve
 
 game.resources.human = new game.resource( 'human', 1, function () {
     if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value && game.resources['human'].value > 1 ) {
-        game.resources.human.decrease( 0.01 * game.resources['human'].value );
-        return -0.01* game.resources['human'].value;
+        game.resources.human.decrease( 0.01 * game.resources['human'].value*0.1 );
+        return -0.01* game.resources['human'].value*0.1;
     } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
-        game.resources.human.increase( 0.01 * game.resources['human'].value );
-        return 0.01* game.resources['human'].value;
+        game.resources.human.increase( 0.01 * game.resources['human'].value*0.1 );
+        return 0.01* game.resources['human'].value*0.1;
     }
     return 0;
 } );
