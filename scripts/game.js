@@ -73,25 +73,13 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
 
     game.resources[this.name] = this;
 }
-
-game.resources.human = new game.resource( 'human', 1, function () {
-    if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value && game.resources['human'].value > 1 ) {
-        game.resources.human.decrease( 0.01 );
-        return -0.01;
-    } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
-        game.resources.human.increase( 0.01 );
-        return 0.01;
-    }
-    return 0;
-} );
-
 game.resources.gold = new game.resource( 'gold', 50,
               function () {
                   var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001 - game.resources.farm.value*0.01;
                   game.resources["gold"].value += tmp;
                   return tmp;
               },
-              function () { game.resources["gold"].value++; },
+              function () { game.resources.gold.increase( 1 + game.resources.farm.value); },
               'Mine gold' );
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
@@ -116,3 +104,23 @@ game.resources.farm = new game.resource( 'farm', 0, null, function ( event ) {
         game.resources.farm.increase( 1 );
     }
 }, 'Buy Farm' );
+
+game.resources.minecart = new game.resource( 'minecart', 0, null, function ( event ) {
+    event = event || window.event;
+    if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.minecart.value ) ) {
+        game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.minecart.value ) );
+        game.resources.minecart.increase( 1 );
+    }
+}, 'Buy Minecart' );
+
+
+game.resources.human = new game.resource( 'human', 1, function () {
+    if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value && game.resources['human'].value > 1 ) {
+        game.resources.human.decrease( 0.01 );
+        return -0.01;
+    } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
+        game.resources.human.increase( 0.01 );
+        return 0.01;
+    }
+    return 0;
+} );
