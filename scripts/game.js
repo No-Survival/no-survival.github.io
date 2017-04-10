@@ -75,8 +75,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
 }
 
 game.resources.human = new game.resource( 'human', 1, function () {
-    if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value &&
-            game.resources['human'].value > 1 ) {
+    if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value && game.resources['human'].value > 1 ) {
         game.resources.human.decrease( 0.01 );
         return -0.01;
     } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
@@ -88,7 +87,7 @@ game.resources.human = new game.resource( 'human', 1, function () {
 
 game.resources.gold = new game.resource( 'gold', 50,
               function () {
-                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001;
+                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001 - game.resources.farm.value*0.01;
                   game.resources["gold"].value += tmp;
                   return tmp;
               },
@@ -97,13 +96,13 @@ game.resources.gold = new game.resource( 'gold', 50,
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
     if ( game.resources["supplies"].value > 0 ) {
-        var tmp = 0.01 * game.resources['human'].value
-        game.resources.supplies.decrease( tmp )
-        return tmp*(-1);
+        var tmp = game.resources.farm * 0.1 - 0.01 * game.resources['human'].value
+        game.resources.supplies.increase( tmp )
+        return tmp;
     }
     return 0;
 },
-    function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' );
+    function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather Supplies' );
 
 game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
     event = event || window.event;
@@ -112,3 +111,11 @@ game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
         game.resources.house.increase( 1 );
     }
 }, 'Buy House' );
+
+game.resources.farm = new game.resource( 'farm', 0, null, function ( event ) {
+    event = event || window.event;
+    if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.farm.value ) ) {
+        game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.farm.value ) );
+        game.resources.farm.increase( 1 );
+    }
+}, 'Buy Farm' );
