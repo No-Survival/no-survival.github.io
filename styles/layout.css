@@ -15,9 +15,7 @@
   float:left;
   width:66%;
 }
-.bprogress{
-  height: 2px;
-}
-.bar{
-  height: 2px;
+progress[value] { 
+  width: 100%;
+  height: auto;
 }

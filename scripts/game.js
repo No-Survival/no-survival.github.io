@@ -13,7 +13,7 @@ game.labels = document.getElementById( 'stats' );
 
 game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.name = name;
-    this.onTick = onTick ? onTick : function () { };
+    this.onTick = onTick ? onTick : function () { return 0; };
     this.onTick.bind( this );
     this.format = function ( value ) {
         if ( value > 1000000000000000 ) {
@@ -35,10 +35,12 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     };
 
     this.update = function () {
-        this.onTick();
+        var ticked = this.onTick();
         this.label.lastChild.innerHTML = this.format( this.value );
-        this.width = this.value % Math.floor( this.value ) * 100;
-        this.bar.style.width = this.width + '%';
+        this.progress.value = ( this.value * 100 ) % 100;
+        this.progress.setAttribute( 'title', ticked + ' per tick' );
+        this.progress.setAttribute( 'class', ticked < 0 ? 'red-bar' : ( ticked === 0 ? 'blue-bar' : 'green-bar' ) );
+        this.label.lastChild.innerHTML = this.format( this.value );
     };
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
@@ -65,13 +67,10 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.label.lastChild.innerHTML = this.format( Math.floor( this.value ) );
     game.labels.appendChild( this.label );
 
-    this.width = 0;
-    this.bprogress = document.createElement( 'div' );
-    this.bprogress.setAttribute( 'class', 'bprogress' );
-    game.labels.appendChild( this.bprogress );
-    this.bar = document.createElement( 'div' );
-    this.bar.setAttribute( 'class', 'bar' );
-    this.bprogress.appendChild( this.bar );
+    this.progress = document.createElement( 'progress' )
+    game.labels.appendChild( this.progress );
+    this.progress.setAttribute( 'value', 0 );
+    this.progress.setAttribute( 'max', 100 );
 
     game.resources[this.name] = this;
 }
@@ -80,18 +79,29 @@ game.resources.human = new game.resource( 'human', 1, function () {
     if ( game.resources['human'].value * 0.01 > game.resources["supplies"].value &&
             game.resources['human'].value > 1 ) {
         game.resources.human.decrease( 0.01 );
+        return -0.01;
     } else if ( game.resources['human'].value < game.resources['house'].value * 10 ) {
         game.resources.human.increase( 0.01 );
+        return 0.01;
     }
+    return 0;
 } );
 
 game.resources.gold = new game.resource( 'gold', 50,
-              function () { game.resources["gold"].value += 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001; },
+              function () {
+                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001;
+                  game.resources["gold"].value += tmp;
+                  return tmp;
+              },
               function () { game.resources["gold"].value++; },
               'Mine gold' );
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
-    if ( game.resources["supplies"].value > 0 ) { game.resources.supplies.decrease( 0.01 * game.resources['human'].value ); }
+    if ( game.resources["supplies"].value > 0 ) {
+        var tmp = 0.01 * game.resources['human'].value
+        game.resources.supplies.decrease( tmp )
+        return tmp;
+    }
 },
     function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' );
 
