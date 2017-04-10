@@ -40,7 +40,6 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         this.progress.value = ( this.value * 100 ) % 100;
         this.progress.setAttribute( 'title', ticked + ' per tick' );
         this.progress.setAttribute( 'class', ticked < 0 ? 'red-bar' : ( ticked === 0 ? 'blue-bar' : 'green-bar' ) );
-        this.label.lastChild.innerHTML = this.format( this.value );
     };
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
