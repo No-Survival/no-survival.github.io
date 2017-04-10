@@ -12,3 +12,22 @@ progress {
   -moz-appearance: none;
    border: none;
 }
+.red-bar::-webkit-progress-value {
+ background:#f00;
+}
+.red-bar::-moz-progress-bar {
+ background: #f00;
+}
+.green-bar::-webkit-progress-value {
+ background:#0f0;
+}
+.green-bar::-moz-progress-bar {
+ background: #0f0;
+}
+.blue-bar::-webkit-progress-value {
+ background:#00f;
+}
+.bue-bar::-moz-progress-bar {
+ background: #00f;
+}
+
