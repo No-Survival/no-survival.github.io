@@ -99,8 +99,9 @@ game.resources.supplies = new game.resource( 'supplies', 25, function () {
     if ( game.resources["supplies"].value > 0 ) {
         var tmp = 0.01 * game.resources['human'].value
         game.resources.supplies.decrease( tmp )
-        return tmp;
+        return tmp*(-1);
     }
+    return 0;
 },
     function () { game.resources.supplies.increase( 1 ) }, 'Gather Supplies' );
 
