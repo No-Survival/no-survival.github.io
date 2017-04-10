@@ -67,7 +67,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     game.labels.appendChild( this.label );
 
     this.progress = document.createElement( 'progress' )
-    game.labels.appendChild( this.progress );
+    this.label.appendChild( this.progress );
     this.progress.setAttribute( 'value', 0 );
     this.progress.setAttribute( 'max', 100 );
 
