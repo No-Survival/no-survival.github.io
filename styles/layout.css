@@ -16,12 +16,11 @@
   width:40%;
   height: auto;
 }
-#buttons > button {
+#buttons > .button {
   width:100%;
-  height: 3em;
+  height: 2em;
 }
 #rContainer {
-  float:left;
   width:25%;
 }
 progress { 
