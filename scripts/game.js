@@ -52,6 +52,10 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         }
         this.value -= amount;
     }
+    
+    this.element = document.createElement('div');
+    this.element.setAttribute('class','resource-wrapper');
+    
     if ( onClick ) {
         this.button = document.createElement( 'button' );
         this.button.innerHTML = label ? label : name + "-action";
@@ -60,20 +64,22 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         this.button = document.createElement( 'div' );
     }
     this.button.setAttribute('class','button');
-    game.buttons.appendChild( this.button );
+    this.element.appendChild( this.button );
+    
     this.label = document.createElement( 'div' );
     this.label.setAttribute( 'class', 'resource' );
     this.label.appendChild( document.createElement( 'div' ) );
     this.label.lastChild.innerHTML = this.name;
     this.label.appendChild( document.createElement( 'div' ) );
     this.label.lastChild.innerHTML = this.format( Math.floor( this.value ) );
-    game.labels.appendChild( this.label );
-
-    this.progress = document.createElement( 'progress' )
-    this.label.appendChild( this.progress );
+    this.element.appendChild(this.label);
+    
+    this.progress = document.createElement( 'progress' );
     this.progress.setAttribute( 'value', 0 );
     this.progress.setAttribute( 'max', 100 );
+    this.element.appendChild( this.progress );
 
+    game.labels.appendChild( this.element );
     game.resources[this.name] = this;
 }
 game.resources.gold = new game.resource( 'gold', 50,
