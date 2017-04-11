@@ -98,7 +98,9 @@ game.resources.supplies = new game.resource( 'supplies', 25, function () {
 },
     function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather' );
 
-game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
+game.resources.house = new game.resource( 'house', 0, function(event){
+    game.resources.farm.increase( 0.00001 * (game.resources.human.value-1) );
+}, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.house.value ) ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.house.value ) );
@@ -106,7 +108,9 @@ game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
     }
 }, 'Buy' );
 
-game.resources.farm = new game.resource( 'farm', 0, null, function ( event ) {
+game.resources.farm = new game.resource( 'farm', 0, function(event){
+    game.resources.farm.increase( 0.00001 * (game.resources.human.value-1) );
+}, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.farm.value ) ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.farm.value ) );
