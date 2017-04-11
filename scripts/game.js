@@ -84,7 +84,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
 }
 game.resources.gold = new game.resource( 'gold', 50,
               function () {
-                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value + 0.0001 - game.resources.farm.value * 0.01 - game.resources.minecart.value * 0.01;
+                  var tmp = 0.1 * game.resources.house.value + 0.01 * game.resources.human.value*(100000000+game.resources.minecart.value)/100000000 + 0.0001 - game.resources.farm.value * 0.01 - game.resources.minecart.value * 0.025;
                   game.resources["gold"].value += tmp;
                   return tmp;
               },
@@ -97,9 +97,9 @@ game.resources.supplies = new game.resource( 'supplies', 25, function () {
     return tmp;
 },
     function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather' );
-
 game.resources.house = new game.resource( 'house', 0, function(event){
-    game.resources.farm.increase( 0.00001 * (game.resources.human.value-1) );
+    game.resources.house.increase( 0.00001 * (game.resources.human.value-1) );
+    return 0.00001 * (game.resources.human.value-1);
 }, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.house.value ) ) {
@@ -110,6 +110,7 @@ game.resources.house = new game.resource( 'house', 0, function(event){
 
 game.resources.farm = new game.resource( 'farm', 0, function(event){
     game.resources.farm.increase( 0.00001 * (game.resources.human.value-1) );
+    return 0.00001 * (game.resources.human.value-1);
 }, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.farm.value ) ) {
@@ -118,7 +119,10 @@ game.resources.farm = new game.resource( 'farm', 0, function(event){
     }
 }, 'Buy' );
 
-game.resources.minecart = new game.resource( 'minecart', 0, null, function ( event ) {
+game.resources.minecart = new game.resource( 'minecart', 0, function(event){
+    game.resources.minecart.increase( 0.000001 * (game.resources.human.value-1) );
+    return 0.000001 * (game.resources.human.value-1);
+}, function ( event ) {
     event = event || window.event;
     if ( game.resources.gold.value > 100 * Math.pow( 1.1, game.resources.minecart.value ) ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.minecart.value ) );
