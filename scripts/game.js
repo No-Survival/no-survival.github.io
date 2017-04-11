@@ -89,14 +89,14 @@ game.resources.gold = new game.resource( 'gold', 50,
                   return tmp;
               },
               function () { game.resources.gold.increase( 1 + game.resources.minecart.value); },
-              'Mine gold' );
+              'Mine' );
 
 game.resources.supplies = new game.resource( 'supplies', 25, function () {
     var tmp = game.resources.farm.value * 0.1 - 0.01 * game.resources.human.value
     game.resources.supplies.increase( tmp )
     return tmp;
 },
-    function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather Supplies' );
+    function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather' );
 
 game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
     event = event || window.event;
@@ -104,7 +104,7 @@ game.resources.house = new game.resource( 'house', 0, null, function ( event ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.house.value ) );
         game.resources.house.increase( 1 );
     }
-}, 'Buy House' );
+}, 'Buy' );
 
 game.resources.farm = new game.resource( 'farm', 0, null, function ( event ) {
     event = event || window.event;
@@ -112,7 +112,7 @@ game.resources.farm = new game.resource( 'farm', 0, null, function ( event ) {
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.farm.value ) );
         game.resources.farm.increase( 1 );
     }
-}, 'Buy Farm' );
+}, 'Buy' );
 
 game.resources.minecart = new game.resource( 'minecart', 0, null, function ( event ) {
     event = event || window.event;
