@@ -9,6 +9,9 @@ body {
 .resource {
   background-image: linear-gradient(to bottom,rgba(255,255,255,0.2),rgba(255,255,255,0),rgba(0,0,0,0.15));
 }
+.resource:nth-child(2n) {
+  text-align:right;
+}
 progress {
   -webkit-appearance: none;
   -moz-appearance: none;
