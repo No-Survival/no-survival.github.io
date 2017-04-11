@@ -1,5 +1,8 @@
 .resource > div{
   width:50%;
+  padding: 2px;
+  box-sizing:border-box;
+  height:100%;
   float:left;
 }
 .button,
