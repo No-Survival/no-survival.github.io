@@ -120,7 +120,7 @@ game.resources.minecart = new game.resource( 'minecart', 0, null, function ( eve
         game.resources.gold.decrease( 100 * Math.pow( 1.1, game.resources.minecart.value ) );
         game.resources.minecart.increase( 1 );
     }
-}, 'Buy Minecart' );
+}, 'Buy' );
 
 
 game.resources.human = new game.resource( 'human', 1, function () {
