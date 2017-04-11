@@ -14,22 +14,28 @@ progress {
   -moz-appearance: none;
    border: none;
 }
+progress::-webkit-progress-value {
+ background-image: linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0),rgba(0,0,0,0.1));
+}
+progress::-moz-progress-bar {
+ background-image: linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0),rgba(0,0,0,0.1));
+}
 .red-bar::-webkit-progress-value {
- background:#f00;
+ background-color:#f00;
 }
 .red-bar::-moz-progress-bar {
- background: #f00;
+ background-color: #f00;
 }
 .green-bar::-webkit-progress-value {
- background:#0f0;
+ background-color:#0f0;
 }
 .green-bar::-moz-progress-bar {
- background: #0f0;
+ background-color: #0f0;
 }
 .blue-bar::-webkit-progress-value {
- background:#00f;
+ background-color:#00f;
 }
-.bue-bar::-moz-progress-bar {
- background: #00f;
+.blue-bar::-moz-progress-bar {
+ background-color: #00f;
 }
 
