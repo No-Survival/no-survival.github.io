@@ -69,7 +69,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.label = document.createElement( 'div' );
     this.label.setAttribute( 'class', 'resource' );
     this.label.appendChild( document.createElement( 'div' ) );
-    this.label.lastChild.innerHTML = this.name;
+    this.label.lastChild.innerHTML = this.name.charAt(0).toUpperCase()+this.name.substr(1);
     this.label.appendChild( document.createElement( 'div' ) );
     this.label.lastChild.innerHTML = this.format( Math.floor( this.value ) );
     this.element.appendChild(this.label);
