@@ -57,7 +57,10 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         this.button.innerHTML = label ? label : name + "-action";
         this.button.onclick = onClick;
         game.buttons.appendChild( this.button );
+    }  else {
+        this.button = document.createElement( 'div' );
     }
+    this.button.setAttribute('class','button');
     this.label = document.createElement( 'div' );
     this.label.setAttribute( 'class', 'resource' );
     this.label.appendChild( document.createElement( 'div' ) );
