@@ -31,7 +31,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         if ( value > 1000 ) {
             return this.format( value / 1000 ) + "k";
         }
-        return Math.floor( value );// + "." + Math.floor( value * 10 ) % 10;
+        return Math.floor( value );
     };
 
     this.update = function () {
