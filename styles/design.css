@@ -6,8 +6,15 @@ body {
   color:#000;
   background-color: #bbb;
 }
-.resource {
+.resource,
+.button {
   background-image: linear-gradient(to bottom,rgba(255,255,255,0.2),rgba(255,255,255,0),rgba(0,0,0,0.15));
+}
+button.button {
+  background-color: #bbb;
+  padding:0;
+  box-shadow: inset 2px 2px 3px #fff,inset -2px -2px 3px #777;
+  border-width: 0;
 }
 .resource:nth-child(2n) {
   text-align:right;
