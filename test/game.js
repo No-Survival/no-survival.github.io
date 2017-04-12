@@ -1,5 +1,9 @@
 var should = require('chai').should();
+require('../scripts/game')
 describe('game', function() {
+  it('game should be an object', function() {
+    game.should.be.a('object');
+  });
   //functions
   describe('#tick()', function() {
     it('tick should be a function', function() {
