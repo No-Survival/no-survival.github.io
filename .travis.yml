@@ -1,0 +1,9 @@
+language: node_js
+node_js: "node"
+git:
+  depth: 3
+before_script:
+  - npm install chai
+  - npm install mocha
+script:
+  - ./node_modules/.bin/mocha --reporter spec
