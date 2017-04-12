@@ -1,5 +1,6 @@
 var should = require('chai').should();
 require('fake-dom');
+window.getElementsByTagName('body')[0].setAttribute('id','stats');
 require('../scripts/game')
 describe('game', function() {
   it('game should be an object', function() {
