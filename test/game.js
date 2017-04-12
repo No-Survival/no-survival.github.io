@@ -1,10 +1,5 @@
 var should = require('chai').should();
-global.window = {
-  setInterval:function(){return 1;}
-};
-global.document = {
-  getElementById:function(id){return {};}
-};
+require('fake-dom');
 require('../scripts/game')
 describe('game', function() {
   it('game should be an object', function() {
