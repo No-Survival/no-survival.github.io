@@ -43,6 +43,32 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     };
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
+
+    this.baseValue = value;
+    this.base = base;
+    this.mods = [];
+    this.max = 0;
+    this.addMod = function ( mod ) {
+        this.mods[mod.priority] = this.mods[mod.priority] ? this.mods[mod.priority] : [];
+        if ( mod.early ) {
+            this.mods[mod.priority].push( mod );
+        } else {
+            this.mods[mod.priority].unshift( mod );
+        }
+        this.max = Math.max( this.max, mod.priority );
+    }
+    this.get = function () {
+        var value = this.base;
+        for ( var c = this.max; c >= 0; c-- ) {
+            if ( this.mods[c] ) {
+                for ( var d = 0; d < this.mods[c].length; d++ ) {
+                    value = this.mods[c][d].modify( value, this.base );
+                }
+            }
+        }
+        return value;
+    }
+
     this.increase = function ( amount ) {
         this.value += !Number.isNaN( amount ) ? amount : 1;
     }
@@ -82,6 +108,13 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     game.labels.appendChild( this.element );
     game.resources[this.name] = this;
 }
+
+game.modificator = function(priority, func, early) {
+        this.modify = func;
+        this.priority = priority;
+        this.early = early;
+}
+
 game.resources.gold = new game.resource( 'gold', 50,
               function () {
                   var tmp = 0.1 * Math.floor(game.resources.house.value) +
