@@ -45,7 +45,6 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.value = startingValue ? startingValue : 0;
 
     this.baseValue = this.value;
-    this.base = base;
     this.mods = [];
     this.max = 0;
     this.addMod = function ( mod ) {
@@ -58,11 +57,11 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
         this.max = Math.max( this.max, mod.priority );
     }
     this.get = function () {
-        var value = this.base;
+        var value = this.baseValue;
         for ( var c = this.max; c >= 0; c-- ) {
             if ( this.mods[c] ) {
                 for ( var d = 0; d < this.mods[c].length; d++ ) {
-                    value = this.mods[c][d].modify( value, this.base );
+                    value = this.mods[c][d].modify( value, this.baseValue );
                 }
             }
         }
