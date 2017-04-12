@@ -44,7 +44,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
 
-    this.baseValue = value;
+    this.baseValue = this.value;
     this.base = base;
     this.mods = [];
     this.max = 0;
