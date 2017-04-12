@@ -108,7 +108,7 @@ game.resource = function ( name, startingValue, onTick, onClick, label ) {
     game.resources[this.name] = this;
 }
 
-game.modificator = function(priority, func, early) {
+game.modifier = function(priority, func, early) {
         this.modify = func;
         this.priority = priority;
         this.early = early;
