@@ -7,13 +7,14 @@
 			http.open("GET","/modules/"+name+".js",false);
 			http.send();
 			global.required[name] = new Function(
-				"var module=null;\n"+
+				"var module={exports:null};\n"+
+				"var exports=module.exports;\n"+
 				"try{\n"+
 				http.responseText+
 				";\n} catch(exception) {\n"+
 				"console.log(exception);\n"+
 				"}\n"+
-				"return module;"
+				"return module.exports;"
 			);
 		}
 		return global.required[name]();
