@@ -1,4 +1,4 @@
-module = function ( element, name, startingValue, onTick, onClick, label ) {
+exports = function ( element, name, startingValue, onTick, onClick, label ) {
     this.name = name;
     this.onTick = onTick ? onTick : function () { return 0; };
     this.onTick.bind( this );
