@@ -1,4 +1,4 @@
-export = function(priority, func, early) {
+module = function(priority, func, early) {
         this.modify = func;
         this.priority = priority;
         this.early = early;
