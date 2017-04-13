@@ -13,7 +13,7 @@
 				";\n} catch(exception) {\n"+
 				"console.log(exception);\n"+
 				"}\n"+
-				"return export;"
+				"return module;"
 			);
 		}
 		return global.required[name]();
