@@ -8,13 +8,13 @@
 			http.send();
 			global.required[name] = new Function(
 				"var module={exports:null};\n"+
-				"var exports=module.exports;\n"+
+				"var exports=null;\n"+
 				"try{\n"+
 				http.responseText+
 				";\n} catch(exception) {\n"+
 				"console.log(exception);\n"+
 				"}\n"+
-				"return module.exports;"
+				"return module.exports?module.exports:exports;"
 			);
 		}
 		return global.required[name]();
