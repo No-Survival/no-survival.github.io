@@ -18,9 +18,13 @@
 		}
 		return global.required[name]();
 	}
-	if(document && document.currentScript && document.currentScript.getAttribute('data-after')) {
-		var s=document.createElement('script');
-		s.setAttribute('src','/scripts/game.js');
-		document.currentScript.parentNode.appendChild(s);
+	if(document && document.currentScript && document.currentScript.getAttribute("data-after")) {
+		var scripts = (document.currentScript.getAttribute('data-after')).split(",");
+		var attach = document.currentScript.parentNode;
+		for(var count=0;count<scripts.length;count++) {
+			var s=document.createElement('script');
+			s.setAttribute("src","/scripts/"+scripts[count]+".js");
+			attach.appendChild(s);
+		}
 	}
 }(this));
