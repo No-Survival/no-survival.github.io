@@ -1,6 +1,6 @@
 module.exports = function (wrapper){
-    var modifier = require('modifier');
-    var resource = require('resource');
+    var modifier = require('./modifier');
+    var resource = require('./resource');
     return {
         resources: {
             gold: new resource(wrapper, 'gold', 50,
