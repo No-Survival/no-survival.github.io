@@ -1,6 +1,7 @@
 (function(global) {
 	global.required = {};
 	global.require = function(name) {
+		name = name.prelace(/^\.\//,'');
 		if(!global.required[name]) {
 			global.required[name] = null;
 			http = new XMLHttpRequest();
