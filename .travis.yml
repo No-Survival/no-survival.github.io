@@ -3,8 +3,10 @@ node_js: "node"
 git:
   depth: 3
 before_script:
-  - npm install chai
-  - npm install mocha
+  - npm install -g chai
+  - npm install -g mocha
+  - npm install -g istanbul
   - npm install --save fake-dom
 script:
-  - ./node_modules/.bin/mocha --reporter spec --globals game
+  - mocha --reporter spec
+  - istanbul cover mocha
