@@ -18,4 +18,9 @@
 		}
 		return global.required[name]();
 	}
+	if(document && document.currentScript && document.currentScript.getAttribute('data-after')) {
+		var s=document.createElement('script');
+		s.setAttribute('src','/scripts/game.js');
+		document.currentScript.parentNode.appendChild(s);
+	}
 }(this));
