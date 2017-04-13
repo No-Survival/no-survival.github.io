@@ -31,7 +31,8 @@ game.resources.supplies = new resource(game.labels, 'supplies', 25, function () 
     return tmp;
 },
     function () { game.resources.supplies.increase( 1+game.resources.farm.value ) }, 'Gather' );
-game.resources.house = new game.resource( 'house', 0, function(event){
+
+game.resources.house = new resource( 'house', 0, function(event){
     game.resources.house.increase( 0.00001 * Math.floor(game.resources.human.value-1) );
     return 0.00001 * Math.floor(game.resources.human.value-1);
 }, function ( event ) {
