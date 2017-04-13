@@ -69,8 +69,7 @@ module = function (wrapper){
                 game.resources[res].update();
             }
         },
-        buttons: buttons,
-        labels: labels,
+        labels: wrapper,
         interval: null
     };
 };
