@@ -8,5 +8,4 @@ before_script:
   - npm install -g istanbul
   - npm install --save fake-dom
 script:
-  - mocha --reporter spec
-  - istanbul cover mocha
+  - istanbul cover mocha -- -R spec
