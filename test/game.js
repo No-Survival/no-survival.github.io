@@ -3,6 +3,8 @@ require('fake-dom');
 document.getElementsByTagName('body')[0].setAttribute('id','stats');
 describe('game', function() {
   var game = require('../modules/game');
+  console.log(typeof game);
+  console.log(game);
   var fakeBody = document.getElementsByTagName('body')[0];
   it('game should be an function', function() {
     game.should.be.a('function');
