@@ -3,7 +3,7 @@ node_js: "node"
 git:
   depth: 3
 before_script:
-  - npm install -g chai
+  - npm install chai
   - npm install -g mocha
   - npm install -g istanbul
   - npm install --save fake-dom
