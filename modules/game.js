@@ -1,4 +1,4 @@
-exports = function (wrapper){
+module.exports = function (wrapper){
     var modifier = require('modifier');
     var resource = require('resource');
     return {
