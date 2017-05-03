@@ -7,7 +7,6 @@ body {
   background-color: #bbb;
 }
 .resource-wrapper:hover {
-  color:#000;
   background-color: #aaa;
 }
 .resource,
