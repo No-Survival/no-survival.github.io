@@ -67,6 +67,7 @@ module.exports = function ( element, name, startingValue, onTick, onClick, label
     
     this.element = document.createElement('div');
     this.element.setAttribute('class','resource-wrapper');
+    this.element.setAttribute('id','resource-'+this.name);
     
     if ( onClick ) {
         this.button = document.createElement( 'button' );
