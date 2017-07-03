@@ -16,6 +16,7 @@
   font-size: 14px;
   height:auto;
   overflow:hidden;
+  position: absolute;
 }
 .resource {
   overflow:hidden;
@@ -29,4 +30,36 @@
 progress { 
   width: 100%;
   height: 1em;
+}
+
+# RESOURCES
+
+#resource-gold {
+    left: 1 %;
+    top: 1%;
+}
+
+#resource-supplies {
+    right: 1%;
+    top: 1%;
+}
+
+#resource-house {
+    top: 45%;
+    left: 1%;
+}
+
+#resource-farm {
+    top: 25%;
+    right: 15%;
+}
+
+#resource-minecart {
+    top: 25%;
+    left: 15%;
+}
+
+#resource-human {
+    top: 45%;
+    right: 1%;
 }
