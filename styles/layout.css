@@ -33,30 +33,25 @@ progress {
 }
 
 #resource-gold {
-    left: 40 %;
+    left: 40%;
     top: 5%;
 }
-
 #resource-supplies {
     left: 40%;
     bottom: 5%;
 }
-
 #resource-house {
     bottom: 25%;
     left: 15%;
 }
-
 #resource-farm {
     top: 25%;
     right: 15%;
 }
-
 #resource-minecart {
     top: 25%;
     left: 15%;
 }
-
 #resource-human {
     bottom: 25%;
     right: 15%;
