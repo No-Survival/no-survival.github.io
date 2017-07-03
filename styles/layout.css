@@ -35,18 +35,18 @@ progress {
 # RESOURCES
 
 #resource-gold {
-    left: 1 %;
-    top: 1%;
+    left: 50 %;
+    top: 5%;
 }
 
 #resource-supplies {
-    right: 1%;
-    top: 1%;
+    left: 50%;
+    bottom: 5%;
 }
 
 #resource-house {
-    top: 45%;
-    left: 1%;
+    bottom: 25%;
+    left: 15%;
 }
 
 #resource-farm {
@@ -60,6 +60,6 @@ progress {
 }
 
 #resource-human {
-    top: 45%;
-    right: 1%;
+    bottom: 25%;
+    right: 15%;
 }
