@@ -1,5 +1,5 @@
 module.exports = function(priority, early,value,isMultiply,resource) {
-        this.modifier = value;
+        this.value = value;
         this.multiply = isMultiply?true:false;
         this.resource = resource;
         this.priority = priority;
