@@ -21,7 +21,7 @@ module.exports = function(wrapper,title,text,duration,modifiers,chance) {
   this.onTick = function(){
     if(this.active) {
       for(var c=0;c<this.modifiers.length;c++) {
-        game.modifiers.push(this.modifiers[c]);
+        game.modifiers.add(this.modifiers[c]);
       }
       this.remaining--;
       this.active=this.remaining>0;
