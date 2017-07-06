@@ -10,11 +10,7 @@ module.exports = function() {
   this.get = function (resource, base) {
     var applyList = function(value,list) {
       for(var e=list.length-1;e>-1;e--) {
-        if(list[e].multiply) {
-          value = value*list[e].value;
-        } else {
-          value = value+list[e].value;
-        }
+        value = list[e].modify(value*list[e].value);
       }
       return value;
     }
