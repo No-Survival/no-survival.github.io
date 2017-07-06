@@ -3,7 +3,7 @@ module.exports = function (wrapper){
     var resource = require('./resource');
     var modifiers = require('./modifiers');
     return {
-        modifiers: modifiers(),
+        modifiers: new modifiers(),
         events: [],
         resources: {
             gold: new resource(wrapper, 'gold', 50,
