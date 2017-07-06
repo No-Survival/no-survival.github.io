@@ -2,6 +2,7 @@ module.exports = function (wrapper){
     var modifier = require('./modifier');
     var resource = require('./resource');
     var modifiers = require('./modifiers');
+    var event = require('./event');
     return {
         modifiers: new modifiers(),
         events: [],
