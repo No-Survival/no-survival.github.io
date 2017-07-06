@@ -30,29 +30,10 @@ module.exports = function ( element, name, startingValue, onTick, onClick, label
     };
     this.update.bind( this );
     this.value = startingValue ? startingValue : 0;
-
     this.baseValue = this.value;
-    this.mods = [];
     this.max = 0;
-    this.addMod = function ( mod ) {
-        this.mods[mod.priority] = this.mods[mod.priority] ? this.mods[mod.priority] : [];
-        if ( mod.early ) {
-            this.mods[mod.priority].push( mod );
-        } else {
-            this.mods[mod.priority].unshift( mod );
-        }
-        this.max = Math.max( this.max, mod.priority );
-    }
     this.get = function () {
-        var value = this.baseValue;
-        for ( var c = this.max; c >= 0; c-- ) {
-            if ( this.mods[c] ) {
-                for ( var d = 0; d < this.mods[c].length; d++ ) {
-                    value = this.mods[c][d].modify( value, this.baseValue );
-                }
-            }
-        }
-        return value;
+        return game.modifiers.get(this.name,this.baseValue)
     }
 
     this.increase = function ( amount ) {
