@@ -1,7 +1,10 @@
 module.exports = function (wrapper){
     var modifier = require('./modifier');
     var resource = require('./resource');
+    var modifiers = require('./modifiers');
     return {
+        modifiers: modifiers(),
+        events: [],
         resources: {
             gold: new resource(wrapper, 'gold', 50,
                               function () {
@@ -65,6 +68,10 @@ module.exports = function (wrapper){
                 }, 'Hire/Sacrifice' )
         },
         tick: function () {
+            game.modifiers.clear();            
+            for (var evt in game.events ) {
+                game.events[evt].onTick();
+            }
             for ( var res in game.resources ) {
                 game.resources[res].update();
             }
