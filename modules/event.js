@@ -16,7 +16,7 @@ module.exports = function(wrapper,title,text,duration,modifiers,chance) {
   this.element.lastChild.appendChild(document.createTextNode(title));
   // TEXT
   this.element.appendChild(document.createElement('p'));
-  this.element.lastChild.appendChild(document.createTextNode(title));
+  this.element.lastChild.appendChild(document.createTextNode(text));
   wrapper.appendChild(this.element);
   this.onTick = function(){
     if(this.active) {
@@ -31,5 +31,6 @@ module.exports = function(wrapper,title,text,duration,modifiers,chance) {
     }
     this.leftover.innerHTML = this.remaining;
     this.element.setAttribute('style','display:'+(this.active?'block':'none')+';');
-  }
+  };
+  this.onTick.bind(this);
 }

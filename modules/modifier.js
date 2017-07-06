@@ -4,10 +4,11 @@ module.exports = function(priority, early,value,isMultiply,resource) {
         this.resource = resource;
         this.priority = priority;
         this.early = early;
-        this.modify = funxtion(value) {
+        this.modify = function(value) {
                 if(this.multiply) {
                         return value*this.value;
                 }
                 return value.this.value;
-        }
+        };
+        this.modify.bind(this);
 }

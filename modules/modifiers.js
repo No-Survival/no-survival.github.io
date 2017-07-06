@@ -7,19 +7,22 @@ module.exports = function() {
     this.modifiers[modifier.resource][modifier.early?'early':'late'].push(modifier);
     this.modifiers[modifier.resource][modifier.early?'early':'late'].sort(function(a,b){return a.priority-b.priority;});
   };
-  this.get = function (resource, base) {
+  this.add.bind(this);
+  this.get = function (resource, value) {
     var applyList = function(value,list) {
       for(var e=list.length-1;e>-1;e--) {
         value = list[e].modify(value*list[e].value);
       }
       return value;
-    }
+    };
     if(!this.modifiers[resource]) {
       return value;
     }
     return applyList(applyList(value,this.modifiers[resource].early),this.modifiers[resource].late);
   };
+  this.get.bind(this);
   this.clear = function() {
     this.modifiers = {};
   };
+  this.clear.bind(this);
 };
