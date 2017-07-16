@@ -10,7 +10,7 @@ module.exports = function(wrapper,title,text,duration,modifiers,chance) {
   this.leftover = document.createElement('span');
   this.element.lastChild.appendChild(this.leftover);
   this.element.lastChild.appendChild(document.createElement('span'));
-  this.element.lastChild.lastChild.appendChild(document.createTextElement('/'+this.duration));
+  this.element.lastChild.lastChild.appendChild(document.createTextNode('/'+this.duration));
   // TITLE
   this.element.appendChild(document.createElement('h3'));
   this.element.lastChild.appendChild(document.createTextNode(title));

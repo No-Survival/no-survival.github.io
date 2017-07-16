@@ -5,7 +5,10 @@ module.exports = function (wrapper){
     var event = require('./event');
     return {
         modifiers: new modifiers(),
-        events: [],
+        events: [
+            new event(wrapper, 'drought', 'A hot drought', 300, [new modifier(1, false, 0.5, true, 'farm')], 100),
+            new event(wrapper, 'monsoon', 'A wet monsoon', 300, [new modifier(1, false, 1.5, true, 'farm')], 100)
+            ],
         resources: {
             gold: new resource(wrapper, 'gold', 50,
                               function () {
